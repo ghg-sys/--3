@@ -290,7 +290,7 @@
             font-size: 20px;
         }
 
-        .review-card__info h4 { font-size: 16px; margin-bottom: 2px; }
+        .review-card__info h3 { font-size: 16px; margin-bottom: 2px; }
         .review-card__info span { font-size: 12px; color: var(--text-light); }
         .review-card__stars { color: #f5a623; margin-bottom: 10px; font-size: 14px; }
         .review-card__text { font-size: 14px; line-height: 1.5; margin-bottom: 15px; }
@@ -596,7 +596,7 @@
                     <div class="review-card__header">
                         <div class="review-card__avatar">П</div>
                         <div class="review-card__info">
-                            <h4>Петрович</h4>
+                            <h3>Петрович</h3>
                             <span>Великий Новгород, 23 сентября 2024</span>
                         </div>
                     </div>
@@ -613,7 +613,7 @@
                     <div class="review-card__header">
                         <div class="review-card__avatar">А</div>
                         <div class="review-card__info">
-                            <h4>Алексей Смирнов</h4>
+                            <h3>Алексей Смирнов</h3>
                             <span>Владимир, 15 сентября 2024</span>
                         </div>
                     </div>
@@ -626,14 +626,14 @@
                     <div class="review-card__header">
                         <div class="review-card__avatar">М</div>
                         <div class="review-card__info">
-                            <h4>Марина К.</h4>
+                            <h3>Марина К.</h3>
                             <span>Суздаль, 2 сентября 2024</span>
                         </div>
                     </div>
                     <div class="review-card__stars">★★★★★</div>
                     <p class="review-card__text">Отличный магазин! Брали материалы для ремонта ванной. Очень помог консультант в выборе плитки и клея. Ничего лишнего не навязывали. Цены приятно удивили. Теперь только к вам!</p>
                     <div class="review-card__images">
-                        <img src="img/brick1.jpg" alt="Фото ремонта" class="review-card__img">
+                        <img src="img/remont.webp" alt="Фото ремонта" class="review-card__img">
                     </div>
                 </article>
             </div>
@@ -641,6 +641,7 @@
 
         <!-- Каталог -->
         <section id="page-catalog" class="page">
+            <h1 style="margin-bottom: 20px;">Каталог товаров</h1>
             <div class="catalog__controls">
                 <div class="catalog__filter">
                     <label for="filter-category">Категория: </label>
@@ -668,25 +669,25 @@
         <section id="page-product" class="page">
             <div class="product-detail">
                 <div>
-                    <img id="pd-image" src="" alt="Товар" class="product-detail__image">
+                    <img id="pd-image" src="https://placehold.co/400x300/e0e0e0/333?text=Product" alt="Товар" class="product-detail__image">
                 </div>
                 <div>
-                    <h1 id="pd-title" style="margin-bottom: 10px;"></h1>
+                    <h1 id="pd-title" style="margin-bottom: 10px;">Название товара</h1>
                     <div style="color: #f5a623;">★★★★★ <span id="pd-reviews" style="color: var(--text-light); font-size: 14px;"></span></div>
                     <div class="product-detail__price-block">
                         <div class="product-detail__price" id="pd-price"></div>
                         <button class="btn" id="pd-add-btn" style="width: 100%;">В корзину</button>
                     </div>
-                    <h3 style="margin-top: 20px;">Характеристики</h3>
+                    <h2 style="margin-top: 20px;">Характеристики</h2>
                     <p id="pd-features" style="margin-top: 10px;"></p>
                 </div>
             </div>
             <div class="review-card" style="margin-top: 20px;">
-                <h3>Самый полезный отзыв</h3>
+                <h2>Самый полезный отзыв</h2>
                 <div class="review-card__header" style="margin-top: 15px;">
                     <div class="review-card__avatar">Е</div>
                     <div class="review-card__info">
-                        <h4>Елена</h4>
+                        <h3>Елена</h3>
                         <span>Владимир, 12 октября 2024</span>
                     </div>
                 </div>
@@ -703,7 +704,7 @@
                     <p>«СтройГрад» начался 12 лет назад с небольшого магазина в спальном районе Владимира. Мы хотели одного — чтобы у людей под рукой было всё необходимое для ремонта, без поездок через весь город и переплат.</p>
                     <p style="margin-top: 10px;">Сегодня «СтройГрад» — это сеть из пяти магазинов и собственный интернет-магазин с доставкой по всей области. Мы выросли, но принципы остались прежними: честные цены, живая консультация и ответственность за каждый проданный товар.</p>
                     
-                    <h3 style="margin-top: 20px;">Адрес:</h3>
+                    <h2 style="margin-top: 20px;">Адрес</h2>
                     <p>г. Владимир, пр. Строителей, д. 15 — офис и склад.<br>
                     Ежедневно с 9:00 до 21:00.<br>
                     Телефон: <a href="tel:88005553535" style="color: var(--primary-color); font-weight: bold;">+7 (800) 555-35-35</a><br>
@@ -716,7 +717,7 @@
 
             <!-- Форма обратной связи с валидацией -->
             <div style="margin-top: 40px; background: var(--white); padding: 30px; border-radius: 8px; box-shadow: var(--shadow);">
-                <h3 style="margin-bottom: 20px; text-align: center;">Оставьте отзыв, чтобы сделать наш магазин лучше</h3>
+                <h2 style="margin-bottom: 20px; text-align: center;">Оставьте отзыв, чтобы сделать наш магазин лучше</h2>
                 <form id="feedback-form" novalidate>
                     <div class="form-group">
                         <label for="fb-name">ФИО</label>
@@ -972,7 +973,7 @@
                 el.innerHTML = `
                     <img src="${item.image}" alt="${item.title}" class="cart-item__img">
                     <div class="cart-item__info">
-                        <h4>${item.title}</h4>
+                        <h3>${item.title}</h3>
                         <p>${item.price.toFixed(2)} ₽</p>
                     </div>
                     <div class="cart-item__controls">

@@ -70,7 +70,7 @@
         /* --- Анимация --- */
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.2); color: #ff0000; }
+            50% { transform: scale(1.3); color: #ff0000; }
             100% { transform: scale(1); }
         }
 
@@ -92,13 +92,25 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-size: 24px;
             font-weight: bold;
             color: #1a5276;
             cursor: pointer;
+            transition: opacity 0.3s;
         }
         
+        .logo:hover { opacity: 0.8; }
+        .logo svg { flex-shrink: 0; }
         .logo span { color: var(--primary-color); }
+
+        .header__actions {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
 
         .header__phone {
             display: flex;
@@ -111,6 +123,34 @@
 
         .header__phone a:hover { text-decoration: underline; }
 
+        .header__cart {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: var(--text-color);
+            transition: color 0.3s;
+        }
+
+        .header__cart:hover { color: var(--primary-color); }
+
+        .header__cart-badge {
+            position: absolute;
+            top: -10px;
+            right: -12px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: bold;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 4px;
+        }
+
         .nav {
             background-color: var(--primary-color);
             padding: 0 20px;
@@ -122,6 +162,7 @@
             margin: 0 auto;
             gap: 20px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav__link {
@@ -170,6 +211,16 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .breadcrumbs {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            padding: 10px 0;
+        }
+        .breadcrumbs a { color: var(--primary-color); transition: color 0.2s; }
+        .breadcrumbs a:hover { text-decoration: underline; }
+        .breadcrumbs span { margin: 0 5px; }
+
         /* --- Главная: Hero --- */
         .hero {
             text-align: center;
@@ -205,6 +256,8 @@
             font-size: 36px;
             margin-bottom: 15px;
             display: inline-block;
+            color: var(--primary-color);
+            font-weight: bold;
         }
 
         .advantage-card__title {
@@ -247,7 +300,6 @@
             filter: brightness(0.95);
         }
 
-        /* Расцветка категорий */
         .category-card--orange { background-color: #ffe4d6; color: #d35400; }
         .category-card--blue { background-color: #e0f2fe; color: #0277bd; }
         .category-card--green { background-color: #dcfce7; color: #166534; }
@@ -329,6 +381,7 @@
             display: flex;
             flex-direction: column;
             transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
         }
 
         .product-card:hover {
@@ -351,7 +404,25 @@
         .product-card__features {
             font-size: 13px;
             color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .product-card__cert {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: var(--primary-color);
             margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .product-card__cert img {
+            width: 30px;
+            height: 40px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
         }
 
         .product-card__price {
@@ -361,6 +432,7 @@
             margin-bottom: 15px;
         }
 
+        /* Стили для выбора количества (используются в каталоге и популярных) */
         .product-card__qty-control {
             display: flex;
             align-items: center;
@@ -386,7 +458,7 @@
         .product-card__qty-btn:hover { background: #ddd; }
 
         .product-card__qty-input {
-            width: 45px;
+            width: 55px;
             height: 32px;
             text-align: center;
             border: 1px solid var(--border-color);
@@ -430,6 +502,105 @@
         .product-detail__price { font-size: 28px; font-weight: bold; margin-bottom: 15px; }
         .product-detail__price span { font-size: 16px; font-weight: normal; }
 
+        /* Блок количества на детальной странице */
+        .product-detail__qty-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .product-detail__qty-label {
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .product-detail__cert-block {
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .product-detail__cert-img {
+            width: 100px;
+            height: 140px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-detail__cert-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .product-detail__cert-text {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .product-detail__cert-text strong {
+            display: block;
+            font-size: 16px;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        /* --- Модальное окно сертификата --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal__content {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s ease-in-out;
+        }
+
+        .modal__close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal__close:hover {
+            color: var(--primary-color);
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
         /* --- Корзина --- */
         .cart-item {
             background: var(--white);
@@ -458,6 +629,31 @@
 
         .cart-item__btn:hover { background: #ddd; }
         
+        .cart-item__qty-input {
+            width: 60px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            -moz-appearance: textfield;
+        }
+
+        .cart-item__qty-input::-webkit-outer-spin-button,
+        .cart-item__qty-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .cart-item__subtotal {
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--primary-color);
+            min-width: 100px;
+            text-align: right;
+        }
+
         .cart-summary {
             background: var(--white);
             padding: 20px;
@@ -503,7 +699,15 @@
             gap: 20px;
         }
 
-        .footer a:hover { text-decoration: underline; }
+        .footer__phone {
+            color: var(--white);
+            font-size: 20px;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+
+        .footer__phone:hover { opacity: 0.8; text-decoration: underline; }
+        .footer a:not(.footer__phone):hover { text-decoration: underline; }
 
         /* --- Адаптивность --- */
         @media (max-width: 768px) {
@@ -511,7 +715,10 @@
             .search { margin-left: 0; width: 100%; margin-top: 10px; }
             .search__input { width: 100%; }
             .product-detail { grid-template-columns: 1fr; }
-            .header__top { flex-direction: column; gap: 10px; }
+            .header__top { flex-direction: column; gap: 15px; }
+            .header__actions { width: 100%; justify-content: space-between; }
+            .cart-item { flex-wrap: wrap; }
+            .cart-item__subtotal { width: 100%; text-align: left; margin-top: 10px; }
         }
     </style>
 </head>
@@ -521,11 +728,27 @@
     <header class="header">
         <div class="header__top">
             <a href="#" class="logo" onclick="navigateTo('home')">
-                <span>С</span>тройГрад
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>СтройГрад</span>
             </a>
-            <div class="header__phone">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                <a href="tel:88005553535">8-800-555-35-35</a>
+            
+            <div class="header__actions">
+                <div class="header__phone">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    <a href="tel:88005553535">8-800-555-35-35</a>
+                </div>
+                
+                <div class="header__cart" onclick="navigateTo('cart')" title="Перейти в корзину">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span id="cart-count" class="header__cart-badge">0</span>
+                </div>
             </div>
         </div>
         <nav class="nav">
@@ -533,7 +756,7 @@
                 <li><a href="#" class="nav__link" onclick="navigateTo('home')">Главная</a></li>
                 <li><a href="#" class="nav__link" onclick="navigateTo('catalog')">Каталог</a></li>
                 <li><a href="#" class="nav__link" onclick="navigateTo('about')">О нас</a></li>
-                <li><a href="#" class="nav__link" onclick="navigateTo('cart')">Корзина (<span id="cart-count">0</span>)</a></li>
+                <li><a href="#" class="nav__link" onclick="navigateTo('help')">Помощь и оценка</a></li>
                 <li class="search">
                     <input type="text" class="search__input" placeholder="Поиск...">
                     <button class="search__btn">🔍</button>
@@ -552,7 +775,6 @@
                 <p>№1 магазин по скорости доставки и качеству материалов!</p>
             </div>
 
-            <!-- Блок преимуществ -->
             <h2 class="section-title">Почему выбирают нас?</h2>
             <div class="advantages__grid">
                 <div class="advantage-card">
@@ -577,7 +799,6 @@
                 </div>
             </div>
 
-            <!-- Категории -->
             <h2 class="section-title">Категории товаров</h2>
             <div class="categories">
                 <div class="category-card category-card--orange" onclick="navigateTo('catalog')">Строительные материалы</div>
@@ -587,11 +808,39 @@
                 <div class="category-card category-card--yellow" onclick="navigateTo('catalog')">Электрика</div>
                 <div class="category-card category-card--gray" onclick="navigateTo('catalog')">Крепёж</div>
             </div>
+
+            <!-- Популярные товары -->
+            <h2 class="section-title">Популярные товары</h2>
+            <div class="catalog__grid" id="popular-grid" style="margin-bottom: 40px;">
+                <!-- Рендерится через JS -->
+            </div>
+
+            <h2 class="section-title">Как мы работаем</h2>
+            <div class="advantages__grid">
+                <div class="advantage-card">
+                    <div class="advantage-card__icon">1️⃣</div>
+                    <h3 class="advantage-card__title">Выбираете товар</h3>
+                    <p class="advantage-card__text">Ищете нужное в каталоге или звоните нам для консультации.</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-card__icon">2️⃣</div>
+                    <h3 class="advantage-card__title">Оформляете заказ</h3>
+                    <p class="advantage-card__text">Добавляете в корзину и подтверждаете заказ на сайте.</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-card__icon">3️⃣</div>
+                    <h3 class="advantage-card__title">Мы собираем</h3>
+                    <p class="advantage-card__text">Проверяем наличие, качество и аккуратно упаковываем.</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-card__icon">4️⃣</div>
+                    <h3 class="advantage-card__title">Быстрая доставка</h3>
+                    <p class="advantage-card__text">Привозим точно в срок. Разгружаем и поднимаем на этаж.</p>
+                </div>
+            </div>
             
-            <!-- Отзывы -->
             <h2 class="section-title">Отзывы наших клиентов</h2>
             <div class="reviews-grid">
-                <!-- Отзыв 1 -->
                 <article class="review-card">
                     <div class="review-card__header">
                         <div class="review-card__avatar">П</div>
@@ -602,13 +851,8 @@
                     </div>
                     <div class="review-card__stars">★★★★★</div>
                     <p class="review-card__text">Привет. Купили с мужем у вас кирпич марки 150 «Боровичи». Муж думал взять другой, но я уговорила его купить этот. И я оказалась права! Супер ровный, качественный, однотонный кирпич без сколов и трещин! ВАУ!</p>
-                    <div class="review-card__images">
-                        <img src="img/brick2.jpg" alt="Фото кирпича" class="review-card__img">
-                        <img src="img/brick3.jpg" alt="Фото кирпича" class="review-card__img">
-                    </div>
                 </article>
 
-                <!-- Отзыв 2 -->
                 <article class="review-card">
                     <div class="review-card__header">
                         <div class="review-card__avatar">А</div>
@@ -621,7 +865,6 @@
                     <p class="review-card__text">Заказывал газобетонные блоки для строительства дома. Привезли быстро, разгрузили аккуратно. Блоки ровные, геометрия отличная, сколов минимум. Единственное, ждал доставку пару часов, но в целом остался доволен. Рекомендую!</p>
                 </article>
 
-                <!-- Отзыв 3 -->
                 <article class="review-card">
                     <div class="review-card__header">
                         <div class="review-card__avatar">М</div>
@@ -632,15 +875,16 @@
                     </div>
                     <div class="review-card__stars">★★★★★</div>
                     <p class="review-card__text">Отличный магазин! Брали материалы для ремонта ванной. Очень помог консультант в выборе плитки и клея. Ничего лишнего не навязывали. Цены приятно удивили. Теперь только к вам!</p>
-                    <div class="review-card__images">
-                        <img src="img/remont.webp" alt="Фото ремонта" class="review-card__img">
-                    </div>
                 </article>
             </div>
         </section>
 
         <!-- Каталог -->
         <section id="page-catalog" class="page">
+            <div class="breadcrumbs">
+                <a href="#" onclick="navigateTo('home'); return false;">Главная</a> <span>/</span> Каталог
+            </div>
+
             <h1 style="margin-bottom: 20px;">Каталог товаров</h1>
             <div class="catalog__controls">
                 <div class="catalog__filter">
@@ -649,6 +893,8 @@
                         <option value="all">Все</option>
                         <option value="brick">Кирпич</option>
                         <option value="block">Блоки</option>
+                        <option value="mix">Смеси</option>
+                        <option value="tool">Инструменты</option>
                     </select>
                 </div>
                 <div class="catalog__sort">
@@ -667,57 +913,132 @@
 
         <!-- Детальная страница товара -->
         <section id="page-product" class="page">
+            <div class="breadcrumbs" id="product-breadcrumbs">
+                <a href="#" onclick="navigateTo('home'); return false;">Главная</a> <span>/</span> 
+                <a href="#" onclick="navigateTo('catalog'); return false;">Каталог</a> <span>/</span> 
+                <span id="breadcrumb-title" style="color: var(--text-color);">Товар</span>
+            </div>
+
             <div class="product-detail">
                 <div>
-                    <img id="pd-image" src="https://placehold.co/400x300/e0e0e0/333?text=Product" alt="Товар" class="product-detail__image">
+                    <img id="pd-image" src="img/brick_borovichi.webp" alt="Товар" class="product-detail__image">
                 </div>
                 <div>
                     <h1 id="pd-title" style="margin-bottom: 10px;">Название товара</h1>
                     <div style="color: #f5a623;">★★★★★ <span id="pd-reviews" style="color: var(--text-light); font-size: 14px;"></span></div>
+                    
                     <div class="product-detail__price-block">
                         <div class="product-detail__price" id="pd-price"></div>
+                        
+                        <!-- Блок выбора количества на детальной странице -->
+                        <div class="product-detail__qty-wrapper">
+                            <span class="product-detail__qty-label">Количество:</span>
+                            <button class="product-card__qty-btn" onclick="changeQtyInput('qty-detail', -1)">-</button>
+                            <input type="number" id="qty-detail" value="1" min="1" class="product-card__qty-input" onchange="validateQtyInput('qty-detail')">
+                            <button class="product-card__qty-btn" onclick="changeQtyInput('qty-detail', 1)">+</button>
+                        </div>
+                        
                         <button class="btn" id="pd-add-btn" style="width: 100%;">В корзину</button>
                     </div>
+                    
                     <h2 style="margin-top: 20px;">Характеристики</h2>
                     <p id="pd-features" style="margin-top: 10px;"></p>
-                </div>
-            </div>
-            <div class="review-card" style="margin-top: 20px;">
-                <h2>Самый полезный отзыв</h2>
-                <div class="review-card__header" style="margin-top: 15px;">
-                    <div class="review-card__avatar">Е</div>
-                    <div class="review-card__info">
-                        <h3>Елена</h3>
-                        <span>Владимир, 12 октября 2024</span>
+                    
+                    <div class="product-detail__cert-block">
+                        <img id="pd-cert-img" src="img/sertifikat-sootvetstviya-page-0001.webp" alt="Сертификат качества" class="product-detail__cert-img" onclick="openCertModal(this.src)" title="Нажмите для увеличения">
+                        <div class="product-detail__cert-text">
+                            <strong>Сертификат качества</strong>
+                            Продукция прошла проверку и соответствует всем государственным стандартам.
+                        </div>
                     </div>
                 </div>
-                <div class="review-card__stars">★★★★★</div>
-                <p class="review-card__text">Отличный кирпич! Рекомендую к покупке. Доставили быстро, водитель помог занести во двор.</p>
             </div>
         </section>
 
         <!-- О нас -->
         <section id="page-about" class="page">
-            <h1 style="margin-bottom: 20px;">СтройГрад - лучший помощник в строительстве</h1>
-            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                <div style="flex: 1; min-width: 300px; background: var(--white); padding: 20px; border-radius: 8px; box-shadow: var(--shadow);">
-                    <p>«СтройГрад» начался 12 лет назад с небольшого магазина в спальном районе Владимира. Мы хотели одного — чтобы у людей под рукой было всё необходимое для ремонта, без поездок через весь город и переплат.</p>
-                    <p style="margin-top: 10px;">Сегодня «СтройГрад» — это сеть из пяти магазинов и собственный интернет-магазин с доставкой по всей области. Мы выросли, но принципы остались прежними: честные цены, живая консультация и ответственность за каждый проданный товар.</p>
-                    
-                    <h2 style="margin-top: 20px;">Адрес</h2>
-                    <p>г. Владимир, пр. Строителей, д. 15 — офис и склад.<br>
-                    Ежедневно с 9:00 до 21:00.<br>
-                    Телефон: <a href="tel:88005553535" style="color: var(--primary-color); font-weight: bold;">+7 (800) 555-35-35</a><br>
-                    E-mail: <a href="mailto:info@stroygrad.ru" style="color: var(--primary-color); font-weight: bold;">info@stroygrad.ru</a></p>
+            <div class="breadcrumbs">
+                <a href="#" onclick="navigateTo('home'); return false;">Главная</a> <span>/</span> О нас
+            </div>
+            <h1 style="margin-bottom: 20px; text-align: center;">О компании СтройГрад</h1>
+            
+            <div class="advantages__grid" style="margin-bottom: 40px;">
+                <div class="advantage-card">
+                    <div class="advantage-card__icon">12</div>
+                    <h3 class="advantage-card__title">Лет на рынке</h3>
+                    <p class="advantage-card__text">Успешно работаем с 2012 года</p>
                 </div>
-                <div style="flex: 1; min-width: 300px;">
-                    <img src="img/map.jpg" alt="Карта" style="border-radius: 8px; box-shadow: var(--shadow);">
+                <div class="advantage-card">
+                    <div class="advantage-card__icon">5</div>
+                    <h3 class="advantage-card__title">Магазинов</h3>
+                    <p class="advantage-card__text">В разных районах города и области</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-card__icon">50+</div>
+                    <h3 class="advantage-card__title">Сотрудников</h3>
+                    <p class="advantage-card__text">Экспертов и логистов в штате</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-card__icon">20</div>
+                    <h3 class="advantage-card__title">Машин</h3>
+                    <p class="advantage-card__text">Собственный автопарк для доставки</p>
                 </div>
             </div>
 
-            <!-- Форма обратной связи с валидацией -->
-            <div style="margin-top: 40px; background: var(--white); padding: 30px; border-radius: 8px; box-shadow: var(--shadow);">
-                <h2 style="margin-bottom: 20px; text-align: center;">Оставьте отзыв, чтобы сделать наш магазин лучше</h2>
+            <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 40px;">
+                <div style="flex: 1; min-width: 300px; background: var(--white); padding: 30px; border-radius: 8px; box-shadow: var(--shadow);">
+                    <h2 style="margin-bottom: 15px; color: var(--primary-color);">Наша история</h2>
+                    <p>«СтройГрад» начался 12 лет назад с небольшого магазина в спальном районе Владимира. Мы хотели одного — чтобы у людей под рукой было всё необходимое для ремонта, без поездок через весь город и переплат.</p>
+                    <p style="margin-top: 10px;">Сегодня «СтройГрад» — это сеть из пяти магазинов и собственный интернет-магазин с доставкой по всей области. Мы выросли, но принципы остались прежними: честные цены, живая консультация и ответственность за каждый проданный товар.</p>
+                    
+                    <h2 style="margin-top: 25px; margin-bottom: 15px; color: var(--primary-color);">Наша миссия</h2>
+                    <p>Сделать качественный ремонт и строительство доступным для каждого. Мы гарантируем честные цены, профессиональные консультации и ответственность на всех этапах — от оформления заказа до разгрузки у вашего дома.</p>
+
+                    <h2 style="margin-top: 25px; margin-bottom: 15px; color: var(--primary-color);">Наша команда и логистика</h2>
+                    <p>Более 50 специалистов ежедневно работают для вас. Наши менеджеры — это не просто продавцы, а настоящие эксперты, которые разбираются в стройматериалах, знают ГОСТы и помогут рассчитать точное количество материалов. У нас свой автопарк (включая манипуляторы), что позволяет доставлять крупногабаритные грузы быстро и без повреждений.</p>
+
+                    <h2 style="margin-top: 25px; margin-bottom: 15px; color: var(--primary-color);">Контакты</h2>
+                    <p><strong>Адрес:</strong> г. Владимир, пр. Строителей, д. 15 — офис и склад.</p>
+                    <p><strong>Режим работы:</strong> Ежедневно с 9:00 до 21:00.</p>
+                    <p><strong>Телефон:</strong> <a href="tel:88005553535" style="color: var(--primary-color); font-weight: bold;">+7 (800) 555-35-35</a></p>
+                    <p><strong>E-mail:</strong> <a href="mailto:info@stroygrad.ru" style="color: var(--primary-color); font-weight: bold;">info@stroygrad.ru</a></p>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="img/map.png" alt="Наш магазин" style="border-radius: 8px; box-shadow: var(--shadow); height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Помощь и оценка -->
+        <section id="page-help" class="page">
+            <div class="breadcrumbs">
+                <a href="#" onclick="navigateTo('home'); return false;">Главная</a> <span>/</span> Помощь и оценка
+            </div>
+            <h1 style="margin-bottom: 20px;">Помощь и оценка</h1>
+            
+            <div style="background: var(--white); padding: 30px; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 30px;">
+                <h2 style="margin-bottom: 20px; color: var(--primary-color);">Часто задаваемые вопросы</h2>
+                
+                <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color);">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">Как осуществляется доставка?</h3>
+                    <p style="font-size: 14px; color: var(--text-light);">Мы доставляем товары по Владимиру и области собственной службой доставки. Стоимость рассчитывается индивидуально в зависимости от веса заказа и адреса. При заказе от 10 000 рублей доставка по городу бесплатна.</p>
+                </div>
+                
+                <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color);">
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">Можно ли вернуть товар?</h3>
+                    <p style="font-size: 14px; color: var(--text-light);">Да, вы можете вернуть или обменять товар надлежащего качества в течение 14 дней с момента покупки, при условии сохранения его упаковки и товарного вида.</p>
+                </div>
+
+                <div>
+                    <h3 style="font-size: 16px; margin-bottom: 5px;">Как проверить наличие товара?</h3>
+                    <p style="font-size: 14px; color: var(--text-light);">Актуальное наличие отображается на нашем сайте в каталоге. Если товара нет в наличии, вы можете позвонить нам по бесплатному номеру, и мы подскажем, когда ожидается поставка.</p>
+                </div>
+            </div>
+
+            <div style="background: var(--white); padding: 30px; border-radius: 8px; box-shadow: var(--shadow);">
+                <h2 style="margin-bottom: 20px; text-align: center; color: var(--primary-color);">Оцените нашу работу</h2>
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 20px;">Оставьте отзыв или предложение, чтобы сделать наш магазин лучше</p>
+                
                 <form id="feedback-form" novalidate>
                     <div class="form-group">
                         <label for="fb-name">ФИО</label>
@@ -740,13 +1061,16 @@
                         </label>
                         <div class="error-message" id="error-fb-agree">Необходимо согласие</div>
                     </div>
-                    <button type="submit" class="btn">Отправить</button>
+                    <button type="submit" class="btn" style="width: 100%;">Отправить</button>
                 </form>
             </div>
         </section>
 
         <!-- Корзина -->
         <section id="page-cart" class="page">
+            <div class="breadcrumbs">
+                <a href="#" onclick="navigateTo('home'); return false;">Главная</a> <span>/</span> Корзина
+            </div>
             <h1 style="margin-bottom: 20px;">Корзина</h1>
             <div id="cart-items">
                 <!-- Элементы корзины рендерятся JS -->
@@ -764,7 +1088,7 @@
     <footer class="footer">
         <div class="footer__content">
             <div>
-                <strong>8-800-555-35-35</strong><br>
+                <a href="tel:88005553535" class="footer__phone">8-800-555-35-35</a><br>
                 Звонок бесплатный
             </div>
             <div>
@@ -780,6 +1104,12 @@
         </div>
     </footer>
 
+    <!-- Модальное окно для сертификата -->
+    <div id="cert-modal" class="modal" onclick="if(event.target === this) closeCertModal()">
+        <span class="modal__close" onclick="closeCertModal()">&times;</span>
+        <img class="modal__content" id="modal-img" src="" alt="Сертификат качества (увеличенный)">
+    </div>
+
     <script>
         // --- Данные о товарах ---
         const products = [
@@ -789,7 +1119,8 @@
                 price: 25.90,
                 category: "brick",
                 image: "img/brick_borovichi.webp",
-                features: "Тип: Кирпич рядовой<br>Марка прочности: М150<br>Вид: керамический<br>Вес: 3,7 кг"
+                features: "Тип: Кирпич рядовой<br>Марка прочности: М150<br>Вид: керамический<br>Вес: 3,7 кг",
+                certificate: "img/sertifikat-sootvetstviya-page-0001.webp"
             },
             {
                 id: 2,
@@ -797,7 +1128,8 @@
                 price: 31.90,
                 category: "brick",
                 image: "img/brick_RK3.webp",
-                features: "Тип: Кирпич рядовой<br>Марка прочности: М250<br>Вид: керамический<br>Вес: 4,1 кг"
+                features: "Тип: Кирпич рядовой<br>Марка прочности: М250<br>Вид: керамический<br>Вес: 4,1 кг",
+                certificate: "img/sertifikat-sootvetstviya-page-0001.webp"
             },
             {
                 id: 3,
@@ -805,7 +1137,8 @@
                 price: 19.90,
                 category: "brick",
                 image: "img/brick_NK3.webp",
-                features: "Тип: Кирпич рядовой<br>Марка прочности: М150<br>Вид: керамический<br>Вес: 2,5 кг"
+                features: "Тип: Кирпич рядовой<br>Марка прочности: М150<br>Вид: керамический<br>Вес: 2,5 кг",
+                certificate: "img/sertifikat-sootvetstviya-page-0001.webp"
             },
             {
                 id: 4,
@@ -813,7 +1146,53 @@
                 price: 150.00,
                 category: "block",
                 image: "img/block_D500.jpg",
-                features: "Тип: Блок<br>Плотность: D500<br>Размер: 600x250x200<br>Вес: 20 кг"
+                features: "Тип: Блок<br>Плотность: D500<br>Размер: 600x250x200<br>Вес: 20 кг",
+                certificate: "img/sertifikat-sootvetstviya-page-0001.webp"
+            },
+            {
+                id: 5,
+                title: "Пескобетон М300 40 кг",
+                price: 180.50,
+                category: "mix",
+                image: "img/pesk.jpg",
+                features: "Тип: Смесь<br>Марка: М300<br>Вес: 40 кг",
+                certificate: "img/sertifikat-sootvetstviya-page-0001.webp"
+            },
+            {
+                id: 6,
+                title: "Штукатурка гипсовая Ротбанд 30 кг",
+                price: 420.00,
+                category: "mix",
+                image: "img/shtuk.jpg",
+                features: "Тип: Штукатурка<br>Основа: Гипс<br>Вес: 30 кг",
+                certificate: "img/sertifikat-sootvetstviya-page-0001.webp"
+            },
+            {
+                id: 7,
+                title: "Утеплитель минеральная вата 100 мм",
+                price: 850.00,
+                category: "block",
+                image: "img/tepl.webp",
+                features: "Тип: Утеплитель<br>Толщина: 100 мм<br>Площадь: 6 м2",
+                certificate: "img/sertifikat-sootvetstviya-page-0001.webp"
+            },
+            {
+                id: 8,
+                title: "Молоток отбойный электрический",
+                price: 4500.00,
+                category: "tool",
+                image: "img/molot.jpg",
+                features: "Тип: Инструмент<br>Мощность: 1500 Вт<br>Вес: 5 кг",
+                certificate: "img/sertifikat-sootvetstviya-page-0001.webp"
+            },
+            {
+                id: 9,
+                title: "Цемент ПЦ 500 Д0 50 кг",
+                price: 350.00,
+                category: "mix",
+                image: "img/cement.webp",
+                features: "Тип: Цемент<br>Марка: М500<br>Вес: 50 кг",
+                certificate: "img/sertifikat-sootvetstviya-page-0001.webp"
             }
         ];
 
@@ -827,8 +1206,11 @@
             });
             document.getElementById(`page-${pageId}`).classList.add('active');
             
+            window.scrollTo(0, 0);
+
             if(pageId === 'catalog') renderCatalog();
             if(pageId === 'cart') renderCart();
+            if(pageId === 'home') renderPopular();
         }
 
         // --- Отрисовка каталога ---
@@ -850,39 +1232,88 @@
             filteredProducts.forEach(product => {
                 const card = document.createElement('article');
                 card.className = 'product-card';
+                card.onclick = () => openProductPage(product.id);
+
                 card.innerHTML = `
                     <img src="${product.image}" alt="${product.title}" class="product-card__image">
                     <h3 class="product-card__title">${product.title}</h3>
                     <div class="product-card__features">${product.features}</div>
-                    <div class="product-card__price">${product.price.toFixed(2)} ₽</div>
                     
-                    <div class="product-card__qty-control">
-                        <button class="product-card__qty-btn" onclick="changeCatalogQty(event, ${product.id}, -1)">-</button>
-                        <input type="number" id="qty-${product.id}" value="1" min="1" class="product-card__qty-input" readonly>
-                        <button class="product-card__qty-btn" onclick="changeCatalogQty(event, ${product.id}, 1)">+</button>
+                    <div class="product-card__cert">
+                        <img src="${product.certificate}" alt="Сертификат">
+                        <span>Сертификат качества</span>
                     </div>
 
-                    <div class="product-card__actions">
-                        <button class="btn" onclick="addToCart(event, ${product.id})">В корзину</button>
-                        <button class="btn" style="background: #ccc;" onclick="openProductPage(${product.id})">Подробнее</button>
+                    <div class="product-card__price">${product.price.toFixed(2)} ₽</div>
+                    
+                    <div class="product-card__qty-control" onclick="event.stopPropagation()">
+                        <button class="product-card__qty-btn" onclick="changeQtyInput('qty-cat-${product.id}', -1)">-</button>
+                        <input type="number" id="qty-cat-${product.id}" value="1" min="1" class="product-card__qty-input" onchange="validateQtyInput('qty-cat-${product.id}')">
+                        <button class="product-card__qty-btn" onclick="changeQtyInput('qty-cat-${product.id}', 1)">+</button>
+                    </div>
+
+                    <div class="product-card__actions" onclick="event.stopPropagation()">
+                        <button class="btn" style="width: 100%;" onclick="addToCart(event, ${product.id}, 'qty-cat-${product.id}')">В корзину</button>
                     </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        function changeCatalogQty(event, id, delta) {
-            event.preventDefault();
-            const input = document.getElementById(`qty-${id}`);
+        // --- Отрисовка популярных товаров на главной ---
+        function renderPopular() {
+            const grid = document.getElementById('popular-grid');
+            grid.innerHTML = '';
+            
+            const popularProducts = products.slice(0, 3);
+
+            popularProducts.forEach(product => {
+                const card = document.createElement('article');
+                card.className = 'product-card';
+                card.onclick = () => openProductPage(product.id);
+
+                card.innerHTML = `
+                    <img src="${product.image}" alt="${product.title}" class="product-card__image">
+                    <h3 class="product-card__title">${product.title}</h3>
+                    <div class="product-card__features">${product.features}</div>
+                    <div class="product-card__price">${product.price.toFixed(2)} ₽</div>
+                    
+                    <!-- Блок количества для популярных товаров -->
+                    <div class="product-card__qty-control" onclick="event.stopPropagation()">
+                        <button class="product-card__qty-btn" onclick="changeQtyInput('qty-pop-${product.id}', -1)">-</button>
+                        <input type="number" id="qty-pop-${product.id}" value="1" min="1" class="product-card__qty-input" onchange="validateQtyInput('qty-pop-${product.id}')">
+                        <button class="product-card__qty-btn" onclick="changeQtyInput('qty-pop-${product.id}', 1)">+</button>
+                    </div>
+
+                    <div class="product-card__actions" onclick="event.stopPropagation()">
+                        <button class="btn" style="width: 100%;" onclick="addToCart(event, ${product.id}, 'qty-pop-${product.id}')">В корзину</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // --- Универсальные функции для изменения и валидации количества ---
+        function changeQtyInput(inputId, delta) {
+            const input = document.getElementById(inputId);
             if (!input) return;
             
             let currentQty = parseInt(input.value, 10) || 1;
             currentQty += delta;
             
             if (currentQty < 1) currentQty = 1;
-            if (currentQty > 99) currentQty = 99;
             
             input.value = currentQty;
+        }
+
+        function validateQtyInput(inputId) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            
+            let val = parseInt(input.value, 10);
+            if (isNaN(val) || val < 1) {
+                input.value = 1;
+            }
         }
 
         // --- Детальная страница товара ---
@@ -890,27 +1321,37 @@
             const product = products.find(p => p.id === id);
             if(!product) return;
 
+            document.getElementById('breadcrumb-title').innerText = product.title;
             document.getElementById('pd-image').src = product.image;
             document.getElementById('pd-title').innerText = product.title;
             document.getElementById('pd-price').innerHTML = `${product.price.toFixed(2)} <span>₽ за шт</span>`;
             document.getElementById('pd-features').innerHTML = product.features;
             document.getElementById('pd-reviews').innerText = "35 отзывов";
+            document.getElementById('pd-cert-img').src = product.certificate;
+            
+            // Сбрасываем значение количества при открытии нового товара
+            document.getElementById('qty-detail').value = 1;
             
             const btn = document.getElementById('pd-add-btn');
-            btn.onclick = (e) => addToCart(e, product.id);
+            // Передаем ID поля ввода в функцию добавления
+            btn.onclick = (e) => addToCart(e, product.id, 'qty-detail');
 
             navigateTo('product');
         }
 
         // --- Работа с корзиной ---
-        function addToCart(event, id) {
+        // Обновленная функция: принимает inputId для получения количества
+        function addToCart(event, id, inputId = null) {
             const product = products.find(p => p.id === id);
-            const qtyInput = document.getElementById(`qty-${id}`);
             let quantityToAdd = 1;
 
-            if (qtyInput) {
-                quantityToAdd = parseInt(qtyInput.value, 10) || 1;
-                qtyInput.value = 1;
+            // Если передан ID, берем значение оттуда
+            if (inputId) {
+                const qtyInput = document.getElementById(inputId);
+                if (qtyInput) {
+                    quantityToAdd = parseInt(qtyInput.value, 10) || 1;
+                    qtyInput.value = 1; // Сброс после добавления
+                }
             }
 
             const existingItem = cart.find(item => item.id === id);
@@ -967,26 +1408,45 @@
             let total = 0;
 
             cart.forEach(item => {
-                total += item.price * item.quantity;
+                const itemSubtotal = item.price * item.quantity;
+                total += itemSubtotal;
+                
                 const el = document.createElement('div');
                 el.className = 'cart-item';
                 el.innerHTML = `
                     <img src="${item.image}" alt="${item.title}" class="cart-item__img">
                     <div class="cart-item__info">
-                        <h3>${item.title}</h3>
-                        <p>${item.price.toFixed(2)} ₽</p>
+                        <h3 style="font-size: 16px;">${item.title}</h3>
+                        <p style="color: var(--text-light);">${item.price.toFixed(2)} ₽ / шт</p>
                     </div>
                     <div class="cart-item__controls">
                         <button class="cart-item__btn" onclick="changeQuantity(${item.id}, -1)">-</button>
-                        <span>${item.quantity}</span>
+                        <input type="number" class="cart-item__qty-input" value="${item.quantity}" min="1" onchange="updateCartQtyFromInput(${item.id}, this.value)">
                         <button class="cart-item__btn" onclick="changeQuantity(${item.id}, 1)">+</button>
-                        <button class="cart-item__btn" style="background: #ffcccc; color: red;" onclick="removeFromCart(${item.id})">×</button>
+                        <button class="cart-item__btn" style="background: #ffcccc; color: red; margin-left: 10px;" onclick="removeFromCart(${item.id})">×</button>
+                    </div>
+                    <div class="cart-item__subtotal">
+                        ${itemSubtotal.toFixed(2)} ₽
                     </div>
                 `;
                 container.appendChild(el);
             });
 
             document.getElementById('cart-total-price').innerText = total.toFixed(2);
+        }
+
+        function updateCartQtyFromInput(id, value) {
+            let val = parseInt(value, 10);
+            if (isNaN(val) || val < 1) {
+                val = 1;
+            }
+            
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity = val;
+                updateCartCount();
+                renderCart(); 
+            }
         }
 
         function changeQuantity(id, delta) {
@@ -1051,8 +1511,37 @@
             }
         });
 
+        // --- Модальное окно сертификата ---
+        const certModal = document.getElementById('cert-modal');
+        const modalImg = document.getElementById('modal-img');
+
+        function openCertModal(src) {
+            modalImg.src = src;
+            certModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCertModal() {
+            certModal.classList.remove('active');
+            modalImg.src = '';
+            document.body.style.overflow = '';
+        }
+
+        certModal.addEventListener('click', function(e) {
+            if (e.target === certModal) {
+                closeCertModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && certModal.classList.contains('active')) {
+                closeCertModal();
+            }
+        });
+
         // Инициализация при загрузке
         renderCatalog();
+        renderPopular();
     </script>
 </body>
 </html>

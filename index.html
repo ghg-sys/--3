@@ -432,7 +432,6 @@
             margin-bottom: 15px;
         }
 
-        /* Стили для выбора количества (используются в каталоге и популярных) */
         .product-card__qty-control {
             display: flex;
             align-items: center;
@@ -502,7 +501,6 @@
         .product-detail__price { font-size: 28px; font-weight: bold; margin-bottom: 15px; }
         .product-detail__price span { font-size: 16px; font-weight: normal; }
 
-        /* Блок количества на детальной странице */
         .product-detail__qty-wrapper {
             display: flex;
             align-items: center;
@@ -930,7 +928,6 @@
                     <div class="product-detail__price-block">
                         <div class="product-detail__price" id="pd-price"></div>
                         
-                        <!-- Блок выбора количества на детальной странице -->
                         <div class="product-detail__qty-wrapper">
                             <span class="product-detail__qty-label">Количество:</span>
                             <button class="product-card__qty-btn" onclick="changeQtyInput('qty-detail', -1)">-</button>
@@ -962,25 +959,26 @@
             </div>
             <h1 style="margin-bottom: 20px; text-align: center;">О компании СтройГрад</h1>
             
+            <!-- ИСПРАВЛЕНИЕ: Заменили h3 на h2, чтобы не пропускать уровни заголовков -->
             <div class="advantages__grid" style="margin-bottom: 40px;">
                 <div class="advantage-card">
                     <div class="advantage-card__icon">12</div>
-                    <h3 class="advantage-card__title">Лет на рынке</h3>
+                    <h2 class="advantage-card__title">Лет на рынке</h2>
                     <p class="advantage-card__text">Успешно работаем с 2012 года</p>
                 </div>
                 <div class="advantage-card">
                     <div class="advantage-card__icon">5</div>
-                    <h3 class="advantage-card__title">Магазинов</h3>
+                    <h2 class="advantage-card__title">Магазинов</h2>
                     <p class="advantage-card__text">В разных районах города и области</p>
                 </div>
                 <div class="advantage-card">
                     <div class="advantage-card__icon">50+</div>
-                    <h3 class="advantage-card__title">Сотрудников</h3>
+                    <h2 class="advantage-card__title">Сотрудников</h2>
                     <p class="advantage-card__text">Экспертов и логистов в штате</p>
                 </div>
                 <div class="advantage-card">
                     <div class="advantage-card__icon">20</div>
-                    <h3 class="advantage-card__title">Машин</h3>
+                    <h2 class="advantage-card__title">Машин</h2>
                     <p class="advantage-card__text">Собственный автопарк для доставки</p>
                 </div>
             </div>
@@ -1107,7 +1105,8 @@
     <!-- Модальное окно для сертификата -->
     <div id="cert-modal" class="modal" onclick="if(event.target === this) closeCertModal()">
         <span class="modal__close" onclick="closeCertModal()">&times;</span>
-        <img class="modal__content" id="modal-img" src="" alt="Сертификат качества (увеличенный)">
+        <!-- ИСПРАВЛЕНИЕ: Убран пустой src, добавлена прозрачная картинка base64 -->
+        <img class="modal__content" id="modal-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Сертификат качества (увеличенный)">
     </div>
 
     <script>
@@ -1278,7 +1277,6 @@
                     <div class="product-card__features">${product.features}</div>
                     <div class="product-card__price">${product.price.toFixed(2)} ₽</div>
                     
-                    <!-- Блок количества для популярных товаров -->
                     <div class="product-card__qty-control" onclick="event.stopPropagation()">
                         <button class="product-card__qty-btn" onclick="changeQtyInput('qty-pop-${product.id}', -1)">-</button>
                         <input type="number" id="qty-pop-${product.id}" value="1" min="1" class="product-card__qty-input" onchange="validateQtyInput('qty-pop-${product.id}')">
@@ -1293,7 +1291,6 @@
             });
         }
 
-        // --- Универсальные функции для изменения и валидации количества ---
         function changeQtyInput(inputId, delta) {
             const input = document.getElementById(inputId);
             if (!input) return;
@@ -1329,28 +1326,24 @@
             document.getElementById('pd-reviews').innerText = "35 отзывов";
             document.getElementById('pd-cert-img').src = product.certificate;
             
-            // Сбрасываем значение количества при открытии нового товара
             document.getElementById('qty-detail').value = 1;
             
             const btn = document.getElementById('pd-add-btn');
-            // Передаем ID поля ввода в функцию добавления
             btn.onclick = (e) => addToCart(e, product.id, 'qty-detail');
 
             navigateTo('product');
         }
 
         // --- Работа с корзиной ---
-        // Обновленная функция: принимает inputId для получения количества
         function addToCart(event, id, inputId = null) {
             const product = products.find(p => p.id === id);
             let quantityToAdd = 1;
 
-            // Если передан ID, берем значение оттуда
             if (inputId) {
                 const qtyInput = document.getElementById(inputId);
                 if (qtyInput) {
                     quantityToAdd = parseInt(qtyInput.value, 10) || 1;
-                    qtyInput.value = 1; // Сброс после добавления
+                    qtyInput.value = 1; 
                 }
             }
 
@@ -1523,7 +1516,7 @@
 
         function closeCertModal() {
             certModal.classList.remove('active');
-            modalImg.src = '';
+            modalImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'; // Сброс на прозрачный пиксель
             document.body.style.overflow = '';
         }
 
